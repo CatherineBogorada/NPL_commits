@@ -128,8 +128,12 @@ def main():
     checkpoint_names = 'cifar10_model.{epoch:03d}.h5'
     today_date = datetime.datetime.today().strftime('%Y-%m-%d')
     
-    train_dir = '/content/drive/My Drive/Project01/train/'
-    test_dir = '/content/drive/My Drive/Project01/test/'
+    awskey = 'AKIASDWXX2IZTRXQUT6P'
+    awssecret = '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'
+    conn = S3Connection(awskey, awssecret)
+
+    train_dir = conn.lookup('train')
+    test_dir = conn.lookup('test')
 
     IMG_WIDTH=240
     IMG_HEIGHT=320
